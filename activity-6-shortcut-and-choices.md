@@ -8,7 +8,8 @@ Ternary Operators (with review of Conditional Statements)
 
 Students should be able to rewrite simple `if/else` logic as a ternary expression and judge when a ternary operator makes code clearer versus when it makes code harder to read.
 
-## Part 1: Group Discussion
+Question 1: Group Discussion
+
 A ternary operator is often described as a "shortcut" for if/else. What do you 
 think that means, based on what you've seen? 
 
@@ -46,15 +47,125 @@ age >= 18	The condition being tested (same as the if)
 :	Separates true case from false case
 "Minor"	Runs/returns this if the condition is false
 
-// Discussion Point for the Group
+Question 2.
 
-Notice the ternary removed 4 lines down to 1, but it only worked cleanly here because:
+ Can a ternary operator replace an if/else if/else with three branches?
 
-There were only two possible outcomes (Adult / Minor)
-Each branch was a single simple value, not multiple statements
+A ternary operator is designed primarily for choosing between two alternatives: one when a condition is true and another when it is false.
 
-This sets up nicely for Question 1 they're asked to reflect on: "A ternary is often described as a shortcut for if/else — what do you think that means?"
+It is possible to nest ternary operators to handle more than two possibilities, but this can make the code difficult to read.
 
-Good group answer to arrive at:
+For example:
 
-A ternary doesn't just save typing — it changes an if/else (a statement that controls what code runs) into an expression that directly produces a value. That's why it can be dropped straight inside a console.log(), a variable assignment, or even inside a template literal — something a regular if/else can't do without extra steps.
+let score = 75;
+
+let grade = score >= 80
+    ? "A"
+    : score >= 60
+    ? "B"
+    : "C";
+
+Although this code works, a regular if/else if/else structure is usually clearer:
+
+let score = 75;
+
+let grade;
+
+if (score >= 80) {
+    grade = "A";
+} else if (score >= 60) {
+    grade = "B";
+} else {
+    grade = "C";
+}
+
+Therefore, while ternary operators can technically be nested to handle multiple branches, they should be used carefully. When there are several conditions, if/else if/else is often easier to understand.
+
+3. When might a ternary operator make code harder to read?
+
+A ternary operator can make code harder to read when the condition is complicated or when several ternary operators are nested together.
+
+For example:
+
+let result = age >= 18 && hasID
+    ? "Allowed"
+    : age >= 13
+    ? "Ask for permission"
+    : "Not allowed";
+
+This may be difficult to understand at a glance.
+
+A regular if/else if/else structure would be clearer:
+
+let result;
+
+if (age >= 18 && hasID) {
+    result = "Allowed";
+} else if (age >= 13) {
+    result = "Ask for permission";
+} else {
+    result = "Not allowed";
+}
+
+A good rule is to use a ternary operator when the decision is simple and easy to understand.
+
+For more complicated decisions, regular if/else statements are usually more readable.
+
+
+Activity 6, Part 2 — Predict the Output
+
+Snippet A
+js
+let score = 72;
+let result = score >= 50 ? "Pass" : "Fail";
+console.log(result);
+
+Predicted Output:
+
+Pass
+
+Reasoning:
+
+Condition: score >= 50 → 72 >= 50 → true
+Ternary returns the "true" value → "Pass"
+That gets stored in result, then logged.
+Snippet B
+js
+let cartTotal = 0;
+let message = cartTotal > 0 ? "Proceed to checkout" : "Your cart is empty";
+console.log(message);
+
+Predicted Output:
+
+Your cart is empty
+
+Reasoning:
+
+Condition: cartTotal > 0 → 0 > 0 → false
+Ternary returns the "false" value → "Your cart is empty"
+
+Discussion point: Good moment to highlight that 0 is falsy-adjacent here — not because of type coercion, but because the condition explicitly checks > 0. Worth asking the group: "Would this still work correctly if cartTotal was -5?" → yes, still "Your cart is empty", since -5 > 0 is also false.
+
+Snippet C
+js
+let stock = 5;
+console.log(`Stock status: ${stock > 0 ? "Available" : "Out of stock"}`);
+
+Predicted Output:
+
+Stock status: Available
+
+Reasoning:
+
+Condition: stock > 0 → 5 > 0 → true
+Ternary returns "Available"
+This value gets interpolated directly inside the template literal using ${ }.
+
+Discussion point: This is the most advanced of the three — it shows a ternary nested inside a template literal. Good question for the group: "Why does this work here, but a regular if/else wouldn't fit inside the backticks (`) the same way?"
+→ Because template literals expect an expression (something that produces a value) inside ${ }, and a ternary is an expression — while an if/else is a statement and can't be embedded inline like this.
+
+Summary Table
+Snippet	Output	Key Concept Tested
+A	Pass	Basic ternary with >=
+B	Your cart is empty	Ternary with explicit > 0 check (not just truthy/falsy)
+C	Stock status: Available	Ternary nested inside a template literal
