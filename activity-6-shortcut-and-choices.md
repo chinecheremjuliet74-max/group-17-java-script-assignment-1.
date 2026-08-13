@@ -169,3 +169,70 @@ Snippet	Output	Key Concept Tested
 A	Pass	Basic ternary with >=
 B	Your cart is empty	Ternary with explicit > 0 check (not just truthy/falsy)
 C	Stock status: Available	Ternary nested inside a template literal
+
+
+Activity 6, Part 3 — Debugging Challenge
+js
+let temperature = 28;
+let feeling = temperature > 25 ? "hot" "cold";
+console.log(feeling)
+
+let isMember = true
+let discount = isMember ? 10 : 0;
+console.log(`Discount: ${discount}%);
+Discussion — What's Wrong? (Talk through before fixing)
+
+Good questions to pose to the group for each line:
+
+"A ternary has three parts separated by two symbols. Count the symbols in line 2 — are both there?"
+"Look at the closing backtick on the last line. Count the backticks — is it a matching pair?"
+"Are missing semicolons actually errors in JavaScript, or just a style issue?"
+Bug 1 — Missing : in the Ternary (Line 2)
+js
+let feeling = temperature > 25 ? "hot" "cold";  // ❌
+
+A ternary must have the form condition ? valueIfTrue : valueIfFalse. Here, the colon (:) separating "hot" and "cold" is missing entirely — JavaScript sees two string values sitting next to each other with no operator connecting them, which is a SyntaxError.
+
+Fix:
+
+js
+let feeling = temperature > 25 ? "hot" : "cold";
+Bug 2 — Unterminated Template Literal (Last Line)
+js
+console.log(`Discount: ${discount}%);  // ❌
+
+Count the backticks: there's only one, at the very start. A template literal needs an opening and closing backtick. Since the closing backtick is missing, JavaScript keeps reading past the end of the line looking for it — this throws "Unterminated template literal" or similar.
+
+Fix:
+
+js
+console.log(`Discount: ${discount}%`);
+Minor / Style Issues (worth discussing, not breaking)
+js
+console.log(feeling)   // missing semicolon
+let isMember = true    // missing semicolon
+
+These won't cause errors on their own thanks to automatic semicolon insertion, but it's worth asking the group: "Why might a team still enforce semicolons even when JavaScript doesn't strictly require them?" — consistency, and it avoids edge-case ASI bugs in trickier code.
+
+The Fully Corrected Code
+js
+let temperature = 28;
+let feeling = temperature > 25 ? "hot" : "cold";
+console.log(feeling);
+
+let isMember = true;
+let discount = isMember ? 10 : 0;
+console.log(`Discount: ${discount}%`);
+Predicted Output After Fixing
+hot
+Discount: 10%
+
+Reasoning:
+
+temperature > 25 → 28 > 25 → true → "hot"
+isMember → true → ternary returns 10
+Template literal correctly interpolates discount as 10
+
+Teaching Point for the Group
+
+Both bugs here are "missing punctuation" bugs — a missing : and a missing backtick. This is a good moment to reinforce a debugging habit: when you get a SyntaxError, don't just stare at the logic — count your matching symbols first: braces {}, parentheses (), backticks `, and the ?/: pair in ternaries. Most syntax errors come down to one of these being unbalanced.
