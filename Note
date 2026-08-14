@@ -1,0 +1,173 @@
+                                           //ACTIVITY 9 — Function Anonymous, Expressions & Arrow Functions
+
+//Part 1: Group Discussion — Answers
+
+
+// 1.
+ What makes a function "anonymous"? If it has no name, how does JavaScript know when to run it?
+
+ ANSWER  :: 
+An anonymous function is a function without its own name. If it is stored in a variable, JavaScript can run it by calling the variable.
+
+
+//2.
+ Why might a programmer choose an arrow function over a regular function declaration? Can your group think of a downside to always using arrow functions?
+
+ANSWER
+// Arrow functions are shorter and often easier to read, especially for simple operations. A downside is that they are not always suitable when you need the special this behavior of regular functions.
+
+
+// 3.
+ If you stored an anonymous function in a variable, how would you call it later?
+
+ANSWER
+// You call the variable followed by parentheses.
+
+
+// 4. 
+Arrow functions are sometimes written even shorter, like (num) => num * num. What do you think happened to the curly braces and the word "return"?
+
+ANSWER
+//  In a short arrow function, when there is only one expression, the braces and return can be omitted. The expression is returned automatically.
+
+
+
+
+                                                  ACTIVITY 10 
+
+// Part 1: Group Discussion — Answers
+
+//1. Looking back at everything you've learned this course, which concept do you think connects to the most other concepts? Why?
+
+//ANSWER//
+//Functions connect to many concepts because they can contain calculations, conditions, loops, variables and other operations. They also make programs easier to organize and reuse.
+
+
+//2. If you were explaining this entire course to a friend who has never coded, in two or three sentences, what would you say JavaScript actually lets you do?
+
+//ANSWER//
+// JavaScript allows us to make web pages interactive and perform calculations and operations based on user input. It can also respond to events and manipulate webpage content.
+
+
+// 3. When building a larger program, why might it help to break it into small functions instead of writing one giant block of code?
+
+//ANSWER//
+// Small functions make the program easier to understand, test, debug and reuse. They also prevent us from repeating the same code.
+
+
+// 4. Think about a bug you fixed earlier in this course. What did that experience teach you about how to approach debugging in general?
+
+//ANSWER//
+// Debugging teaches us to identify the error, understand why it happened, test possible fixes and check the program again instead of guessing.
+
+// 5. As a group, discuss: which combination of concepts (e.g., loops + functions, or conditionals + ternaries) do you feel most confident about, and which still feels shak?
+
+//ANSWER//
+// As a group, we feel most confident with condition and ternary operators because they are straightforward for making decisions in a program. we still feel a 
+// little shaky with loops and functions, especially when combining the together, so we need more practice with them.
+
+
+
+
+// Part 2: Predict the Output
+
+// Snippet A
+// The discount is 10% because the order total is 120.
+
+// Discount: $12
+// Final total: $108
+
+
+
+// Snippet B
+// Numbers 1–4 are classified as:
+
+// 1 is odd
+// 2 is even
+// 3 is odd
+// 4 is even
+
+// Snippet C
+
+// The input has spaces around "Chinecherem", but .trim() removes them and .toUpperCase() changes it to uppercase.
+
+// Welcome, CHINECHEREM!
+
+
+                                            PART 4 — ORDER CHECKOUT PROGRAM
+
+The assignment asks you to build a checkout program that:
+
+* gets an item name, price, and quantity
+* converts the data to the correct types
+* calculates a subtotal with a function
+* uses a condition/ternary for free shipping
+* displays a formatted receipt. JS_Group_Activity_1_07.2026 (1).pdf
+
+Step 1 — Understand the Problem: As a group, describe the entire program from start
+to finish in your own words.
+
+Answer:
+
+The program takes an item’s name, price, and quantity, calculates the subtotal, determines the shipping cost, calculates the final total, and displays the order information as a receipt.
+
+
+
+Step 2 — Identify Inputs: List every piece of information the program needs from the
+user
+
+We need:
+
+Item name
+Price
+Quantity
+
+
+
+Step 3 — Identify Processing: List every calculation, conversion, and decision the
+program must make, in order.
+
+The program will:
+
+1. Store the item name.
+2. Store the price.
+3. Store the quantity.
+4. Multiply price × quantity.
+5. Check whether the subtotal qualifies for free shipping.
+6. Add shipping to the subtotal.
+7. Display the final receipt.
+
+⸻
+
+Step 4 — Identify Outputs: Describe exactly what the final receipt should look like.
+
+The receipt should display:
+
+Item
+Price
+Quantity
+Subtotal
+Shipping
+Final Total
+
+
+Step 5 — Plan the Solution: Write the full plain-English algorithm before writing any
+code. Assign no fixed roles — just talk through the logic together until everyone
+agrees on the plan.
+
+1. Start the program.
+2. Store the item name, price, and quantity.
+3. Calculate the subtotal by multiplying the price by the quantity.
+4. If the subtotal is at least $50, make shipping free; otherwise charge $5.
+5. Add the shipping cost to the subtotal.
+6. Display the item information and final total in a formatted receipt.
+7. End the program.
+
+
+ Step 8 — Improve the Solution: As a group, review your finished program together. Is
+there any repeated logic that could be turned into its own function? Are your variable
+and function names clear to someone reading it for the first time?
+
+Answer:
+We used a separate calculateSubtotal() function so that the calculation can be reused. We also used a checkout() 
+function to keep the order-processing logic organized. The variable and function names clearly describe what each part of the program does.
